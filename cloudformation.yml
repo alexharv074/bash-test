@@ -1,0 +1,32 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: Test Stack
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Metadata:
+      AWS::CloudFormation::Init:
+        config:
+          commands:
+            01_template_elastic:
+              command:
+                echo "Hello World"
+    Properties:
+      ImageId: ami-08589eca6dcc9b39c
+      InstanceType: t2.micro
+      KeyName: default
+      UserData:
+        "Fn::Base64":
+          !Sub |
+            #!/bin/bash -xe
+            # Start cfn-init
+            /opt/aws/bin/cfn-init -s ${AWS::StackId} --resource EC2Instance --region ${AWS::Region}
+            # Send the respective signal to Cloudformation
+            /opt/aws/bin/cfn-signal -e 0 --stack ${AWS::StackId} --resource EC2Instance --region ${AWS::Region}
+      Tags:
+        - Key: Name
+          Value: Test
+    CreationPolicy:
+      ResourceSignal:
+        Count: 1
+        Timeout: PT10M
