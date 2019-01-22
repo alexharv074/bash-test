@@ -5,7 +5,7 @@ A Repo for testing snippets of Bash code
 #### Table of contents
 
 1. [Getopts example](#getopts-example)
-2. [test.sh](#`test.sh`)
+2. [test.sh](##`test.sh`)
 
 ## Getopts example
 
