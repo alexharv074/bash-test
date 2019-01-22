@@ -16,6 +16,6 @@ Usage:
 You passed baz to -b, -a is true, and then passed qux quux quuz after that
 ~~~
 
-## test.sh
+## `test.sh`
 
 This is a test script.
