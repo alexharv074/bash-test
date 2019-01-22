@@ -1,7 +1,8 @@
 echo -n 'Enter Name Where Scaling Groups will be updated: "Default Stack" = ' -e -i 'Test ' ; read stackname
 
 scalegroups=($(aws autoscaling describe-auto-scaling-groups \
-  --query 'AutoScalingGroups[?contains(Tags[?Key==`aws:cloudformation:stack-name`].Value, `'$stackname'`)].AutoScalingGroupName'))
+  --query 'AutoScalingGroups[?contains(Tags[?Key==`aws:cloudformation:stack-name`].Value, `'$stackname'`)].AutoScalingGroupName' \
+  --output text))
 
 echo "Total Stacks Found :" ${scalegroups[*]}
 
@@ -10,7 +11,7 @@ do
   echo "Processing group: $group"
 
   currentcapacity=$(aws autoscaling describe-auto-scaling-groups \
-    --query 'AutoScalingGroups[?AutoScalingGroupName==`'$group'`].[DesiredCapacity]' \
+    --query 'AutoScalingGroups[?AutoScalingGroupName==`'$group'`].DesiredCapacity' \
     --output text)
 
   aws autoscaling set-desired-capacity \
@@ -19,7 +20,7 @@ do
     --honor-cooldown
 
   latestcapacity=$(aws autoscaling describe-auto-scaling-groups \
-    --query 'AutoScalingGroups[?AutoScalingGroupName==`'$group'`].[DesiredCapacity]' \
+    --query 'AutoScalingGroups[?AutoScalingGroupName==`'$group'`].DesiredCapacity' \
     --output text)
 
   echo "Latest Capacity = " $latestcapacity
