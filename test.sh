@@ -1,7 +1,11 @@
-aws iam list-users --output text > users.txt
-cut -f6 users.txt | while read user ; do
-  (echo $user ; aws iam list-groups-for-user \
-      --user-name $user \
-      --output text) | paste - - > groups.txt
-done
-join -1 6 -2 1 users.txt groups.txt
+#!/bin/bash
+
+declare -a arr=(node_modules/* package-lock.json bundle.js.map)
+
+function deploy(){
+    echo aws s3 rm s3://bucketname --profile Administrator --recursive
+    echo aws s3 sync ./ s3://bucketname --profile Administrator \
+      $(for x in "${arr[@]}" ; do echo "--exclude=$x " ; done)
+}
+
+deploy
