@@ -1,60 +1,54 @@
 setUp() {
-  data="aaa
-PAT1
+  cat > /tmp/before <<EOF
+aaa
+bbb
+ccc
+bbb
+ccc
+eee
+EOF
+  cat > /tmp/expected <<EOF
+aaa
+bbb
+ccc
 bbb
 ccc
 ddd
-PAT2
 eee
-PAT1
-2
-46
-PAT2
-xyz"
-
-  expected="bbb
-ccc
-ddd"
+EOF
 }
 
-testLinkedNotApplicableSolution1() {
-  actual=$(gsed -n '/PAT1/,/PAT2/{/PAT1/!{/PAT2/!p}}' <<< $data)
-  assertNotEquals "$expected" "$actual"
+script_under_test1() {
+  cat <<EOF
+function! AddLine()
+  call search("bbb")
+  call search("bbb")
+  let l:foundline = search("ccc")
+  call append(l:foundline, "ddd")
+  wq!
+endfunction
+EOF
 }
 
-testLinkedNotApplicableSolution2() {
-  actual=$(gsed -n '/PAT1/,/PAT2/{//!p}' <<< $data)
-  assertNotEquals "$expected" "$actual"
+script_under_test2() {
+  cat <<EOF
+function! AddLine()
+  normal /bbbn/cccoddd
+  wq!
+endfunction
+EOF
 }
 
-testLinkedNotApplicableSolution3() {
-  actual=$(gsed -n '/PAT1/,/PAT2/p' <<< $data)
-  assertNotEquals "$expected" "$actual"
+testIt1() {
+  script_under_test1 > /tmp/script.vim
+  vim -u /tmp/script.vim -c 'call AddLine()' /tmp/before
+  assertEquals "" "$(diff -u /tmp/expected /tmp/before)"
 }
 
-testLinkedNotApplicableSolution4() {
-  actual=$(gsed -n '/PAT1/,/PAT2/{/PAT2/!p}' <<< $data)
-  assertNotEquals "$expected" "$actual"
-}
-
-testIniansIncorrectSolution1InChat() {
-  actual=$(awk '/PAT1/{flag=1;next}/PAT2/{flag=0}flag' <<< $data)
-  assertNotEquals "$expected" "$actual"
-}
-
-testIniansIncorrectSolution2InChat() {
-  actual=$(gsed -n '/PAT1/,/PAT2/{//!p}' <<< $data)
-  assertNotEquals "$expected" "$actual"
-}
-
-testJamesBrownsCorrectSolutionInChat() {
-  actual=$(awk '/PAT1/{f=1;next}/PAT2/{exit}f' <<< $data)
-  assertEquals "$expected" "$actual"
-}
-
-testMyOwnCorrectSolution() {
-  actual=$(gsed '0,/PAT1/d;/PAT2/Q' <<< $data)
-  assertEquals "$expected" "$actual"
+testIt2() {
+  script_under_test2 > /tmp/script.vim
+  vim -u /tmp/script.vim -c 'call AddLine()' /tmp/before
+  assertEquals "" "$(diff -u /tmp/expected /tmp/before)"
 }
 
 . shunit2
