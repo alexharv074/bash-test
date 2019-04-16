@@ -1,57 +1,35 @@
-  data="2018     1     1     0     0     0                        EPOCH OF CURRENT MAP
-   ...
-   45.0-180.0 180.0   5.0 450.0                            LAT/LON1/LON2/DLON/H
-   59   63   69   76   83   90   96  100  100   93   81   68   55   46   39   34
-   31   29   28   28   26   25   24   26   32   40   48   54   56   54   50   46
-   43   42   42   44   46   48   51   54   57   59   59   58   55   51   48   47
-   48   50   53   56   58   61   63   65   66   66   65   65   66   68   72   76
-   82   86   88   87   81   72   64   59   59
-    42.5-180.0 180.0   5.0 450.0                            LAT/LON1/LON2/DLON/H
-   63   67   74   80   88   97  107  115  116  109   95   79   64   53   45   40
-   37   36   36   38   39   39   40   43   48   54   60   63   62   59   54   50
-   47   45   45   46   47   49   51   54   57   60   60   59   57   54   53   54
-   56   60   62   64   65   67   69   72   74   74   74   73   72   72   74   77
-   82   86   90   89   84   77   68   63   63
-    40.0-180.0 180.0   5.0 450.0                            LAT/LON1/LON2/DLON/H
-   71   75   80   84   90  100  112  123  127  122  108   91   75   64   56   50
-   46   45   47   51   54   57   59   61   65   70   72   72   69   64   58   53
-   50   48   47   46   46   47   49   52   56   59   61   61   59   58   58   60
-   63   66   68   68   68   70   73   77   80   82   82   81   80   79   79   81
-   84   89   93   94   91   84   76   72   71
-    37.5-180.0 180.0   5.0 450.0                            LAT/LON1/LON2/DLON/H
-   82   84   86   87   89   96  108  122  130  128  116  101   87   77   70   63
-   58   56   59   64   69   73   76   79   82   84   83   80   74   67   60   55
-   53   51   49   47   45   44   47   51   55   59   62   63   63   62   62   64
-   67   69   69   68   67   69   74   81   86   89   90   89   88   88   88   89
-   92   96  100  103  100   94   87   83   82
-    35.0-180.0 180.0   5.0 450.0                            LAT/LON1/LON2/DLON/H
-   94   95   94   89   84   86   96  111  122  125  118  108   98   92   85   77
-   70   67   69   74   81   86   89   92   93   93   91   85   77   68   61   57
-   55   53   51   48   45   44   46   51   56   61   64   66   66   66   66   67
-   68   68   67   64   64   68   75   83   90   95   97   98   98   99   99  101
-  103  107  112  115  113  108  100   95   94
-    32.5-180.0 180.0   5.0 450.0                            LAT/LON1/LON2/DLON/H
-  109  109  104   94   81   75   80   93  107  114  113  109  106  104   98   90
-   80   75   76   82   88   93   95   97   98   97   93   86   77   68   61   58
-   57   56   55   51   48   47   49   54   59   63   67   69   70   70   68   67
-   65   64   61   59   61   67   76   86   94   99  103  105  108  111  114  116
-  119  123  128  130  129  123  116  110  109
-    30.0-180.0 180.0   5.0 450.0                            LAT/LON1/LON2/DLON/H
-  127  127  121  106   85   69   66   75   88   98  103  106  110  112  108   98
-   87   80   80   84   90   93   94   95   95   93   89   82   74   67   61   58
-   58   59   59   57   54   52   54   58   63   66   68   71   72   70   67   63
-   59   56   54   54   58   67   78   89   97  102  107  111  117  123  129  135
-  139  143  147  149  147  141  133  127  127
-  ...
-  1                                                      END OF TEC MAP"
-
-testMyOwnCorrectSolution() {
-  #gsed -n '/LAT/{p;n;n;p}' <<< "$data"
-  #awk '/LAT/{gsub(/ +/, " ");print;getline;getline;print $(NF-4)" "$(NF-3)" "$(NF-2)" "$(NF-1)" "$NF}' <<< "$data"
-  cat /var/tmp/c1pg0010.18i | sed -n '/START OF TEC MAP/,/END OF TEC MAP/{/START OF TEC MAP/!{/END OF TEC MAP/!p;};}' | awk '/LAT/ {
-    print; getline; getline
-    print $(NF-4)" "$(NF-3)" "$(NF-2)" "$(NF-1)" "$NF
-  }'
+data() {
+  cat <<EOF
+set nat source rule 39 source address '10.112.140.155/32'  
+set nat source rule 1008 source address '10.112.140.155/32'  
+set nat source rule 1010 source address '10.112.140.155/32'  
+set nat source rule 1036 destination address '10.44.68.252/32'  
+set nat source rule 1037 destination address '10.44.68.252/32'  
+set nat source rule 1099 source address '10.112.140.155/32'  
+set nat source rule 1104 source address '10.112.140.155/32'  
+set nat source rule 1515 destination address '10.44.68.252/32'  
+set nat source rule 1515 source address '10.112.140.155/32'  
+set nat source rule 1516 destination address '10.44.68.252/32'  
+set nat source rule 1517 source address '10.112.140.155/32'  
+set nat source rule 1520 source address '10.112.140.155/32'
+EOF
 }
 
-. shunit2
+data | awk -v sq="'" -v src=10.112.140.155 -v dst=10.44.68.252 '
+  BEGIN {
+    s_regex = sq src "/"; d_regex = sq dst "/"
+  }
+  /source address/   &&    $8 ~ s_regex {s[si] = $5; si++}
+  /destination address/ && $8 ~ d_regex {d[di] = $5; di++}
+  END {
+    for (i in s) for (j in d) if (s[i] == d[j]) {print s[i]}
+  }
+  '
+#awk -v src=10.44.68.252 -v dst=10.112.140.155 '
+#  BEGIN {xi=0; yi=0}
+#  /source address/      && $8 ~ src {x[xi] = $5; xi++}
+#  /destination address/ && $8 ~ dst {y[yi] = $5; yi++}
+#  END {
+#    for (i in x) {for (j in y) if (x[i] == y[j]) {print x[i]; exit}}
+#  }
+#  ' <<< "$data"
