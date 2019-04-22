@@ -1,5 +1,15 @@
-mkdir node_fake_returns
-mkdir output_json
-for i in 1 2 3 ; do
-  touch output_json/{email_data,variable_data}-${i}.json
-done
+
+string='my\nmulti\nline\nstring\n'
+
+cat > FILE <<EOF
+foo
+### the first line
+
+abc cba jfkdslfjslkd
+
+### other lines"
+EOF
+
+#gsed -e '0,/^###/i\' -e "$string" FILE
+
+gsed -E "0,/###/ i$string" FILE
