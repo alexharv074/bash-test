@@ -1,16 +1,26 @@
 cat > FILE <<EOF
-    00000000: 30327c30 30303131 36333132 567c317c  0|2011002136|1|V
-    00000010: 44204149 56452045 4d415449 544e4549  IA DE EVITAMIENT
-    00000020: 7c007c4f 30327c00 302d3131 37312d33  O|.|.|2011-03-17
-    00000030: 3a393020 303a3035 33427c30 38313957   09:50:00|B3W918
-    00000040: 327c317c 7c39397c 4f52544f 4f4d7c53  |1|2|99|OTROS|MO
-    00000050: 414b4f54 7c007c52 7c007c00 36312d47  TOKAR|.|.|.|G-16
-    00000060: 7c54527c 444e4f43 52494355 204e5520  |RT|CONDUCIR UN
-    00000070: 49484556 4f4c5543 524f5020 414e5520  VEHICULO POR UNA
+word1 word2 word3 word4
+word4 word5 word6 word7
+word6 word7 word8 word9
+word9 word6 word8 word3
 EOF
 
-cut -c52- FILE
-echo ===
-awk 'BEGIN {FIELDWIDTHS = "15 9 9 9 9 16"} {print $6}' FILE
-echo ===
-sed -E 's/.{51}//' FILE
+awk '
+# script.awk
+
+NR > 1 {
+  split(last, last_ar)
+  split($0, curr_ar)
+
+  delete found          # Count how many unique occurrences
+  for (i in curr_ar)    # of words are seen.
+    for (j in last_ar)
+      if (last_ar[j] == curr_ar[i])
+        found[curr_ar[i]]++
+
+  if (length(found) >= 3) print
+}
+{
+  last = $0
+}
+' < FILE
