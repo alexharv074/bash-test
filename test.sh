@@ -1,7 +1,16 @@
 cat > FILE <<EOF
- 1556113878,60662402644292
- 1554090396,59547403093308
+#[multilib-testing]
+#Include = /etc/pacman.d/mirrorlist
+
+#[multilib]
+#Include = /etc/pacman.d/mirrorlist
 EOF
 
-ruby -F, -ane '
-  print [Time.at($F[0].to_i).strftime("%Y-%m"), $F[1]].join(",")' FILE
+gsed -i '
+  /\[multilib]/ {
+    n
+    s/^#//
+  }
+  ' FILE
+
+#gsed -i '/class A/,/path/{s!path=.*!path='"'/x/y/z'"'!}' FILE
