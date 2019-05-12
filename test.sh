@@ -1,16 +1,9 @@
 cat > FILE <<EOF
-#[multilib-testing]
-#Include = /etc/pacman.d/mirrorlist
-
-#[multilib]
-#Include = /etc/pacman.d/mirrorlist
+127.0.0.1
+127.0.1.1  servername
+2.2.2.2  foo
 EOF
 
-gsed -i '
-  /\[multilib]/ {
-    n
-    s/^#//
-  }
-  ' FILE
+IP='192.168.1.1'
 
-#gsed -i '/class A/,/path/{s!path=.*!path='"'/x/y/z'"'!}' FILE
+gsed -E '1h; 1!H; $!d; x; s/(.*)(127\.0\.[^\t ]+)/\1'"$IP"'/' FILE
