@@ -6,14 +6,17 @@ cat > FILE <<EOF
 5,    hh,  ii,    ,
 EOF
 
-awk '
+gawk '
   BEGIN {
     FPAT = "[ ,]+"
   }
   $4 == "" {
-    print >> "FILE1.csv"
+    print > "FILE1.csv"
   }
   $4 != "" {
-    print >> "FILE2.csv"
+    print > "FILE2.csv"
   }
   ' FILE
+
+cat FILE1.csv
+cat FILE2.csv
