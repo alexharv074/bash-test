@@ -1,9 +1,19 @@
 cat > FILE <<EOF
-127.0.0.1
-127.0.1.1  servername
-2.2.2.2  foo
+1,    xx,  yy,  zz,
+2,    aa,  bb,    ,
+3,    cc,  dd,  ee,
+4,    ff,  gg,    ,
+5,    hh,  ii,    ,
 EOF
 
-IP='192.168.1.1'
-
-gsed -E '1h; 1!H; $!d; x; s/(.*)(127\.0\.[^\t ]+)/\1'"$IP"'/' FILE
+awk '
+  BEGIN {
+    FPAT = "[ ,]+"
+  }
+  $4 == "" {
+    print >> "FILE1.csv"
+  }
+  $4 != "" {
+    print >> "FILE2.csv"
+  }
+  ' FILE
