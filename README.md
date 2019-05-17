@@ -1,6 +1,6 @@
 # Markdown test
 
-Go to [foo/_bar](#foobar)
+Go to [foo/_bar](#foo_bar)
 
 aaa<br>
 bbb<br>
