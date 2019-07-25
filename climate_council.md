@@ -19,11 +19,13 @@ As can be seen, nuclear power emits less CO2 over its lifecycle than any other f
 
 Perhaps the Climate Council is using (anti-nuclear activist and paid wind industry consultant) Benjamin Sovacool's discredited numbers rather than those accepted by the IPCC consensus?
 
-With all of that said, even the IPCC AR5's estimates likely overstate lifecycle CO2 emissions of nuclear power. The most energy-intensive part of the nuclear fuel cycle is uranium enrichment and historically that has been the highly ineffecient method of gaseous diffusion. See here:
+With all of that said, even the IPCC AR5's estimates likely overstate lifecycle CO2 emissions of nuclear power. The most energy-intensive part of the nuclear fuel cycle is uranium enrichment and historically that has been done using the highly energy intensive method of gaseous diffusion. See here:
 
 > Gaseous diffusion was the first commercial process used in the United States to enrich uranium. These facilities utilized massive amounts of electricity and as the centrifuge technology matured the existing gaseous diffusion plants became obsolete. Worldwide they have all been replaced by second-generation technology, which requires far less electric power to produce equivalent amounts of separated uranium. These facilities are now considered obsolete.
-
 https://www.nrc.gov/materials/fuel-cycle-fac/ur-enrichment.html
+
+And these are no longer used anywhere in the world:
+http://world-nuclear-news.org/Articles/Final-Oak-Ridge-gaseous-diffusion-facilities-demol
 
 In addition, with the advent of the next generation of nuclear technology, up to 90% of the fuel rod (or 100% in a breeder reactor) is consumed, and while data is not available, we should expect the lifecycle CO2 emissions of these to be far less than even the already low emissions of Generation II nuclear.
 
