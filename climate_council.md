@@ -46,7 +46,7 @@ Since this reactor can run on spent fuel rods - or even decommissioned nuclear w
 
 - Nuclear power plants are highly controversial
 
-It is a little disingenous to say that nuclear power is controversial even as the Climate Council uses its platform to create anti-nuclear controversy. It is likely that the nuclear power would not be controversial in the absence of anti-nuclear groups like the Australian Greens and the Climate Council spreading misinformation about nuclear power.
+It is a little disingenuous to say that nuclear power is controversial even as the Climate Council uses its platform to create anti-nuclear controversy. It is likely that the nuclear power would not be controversial in the absence of anti-nuclear groups like the Australian Greens and the Climate Council spreading misinformation about nuclear power.
 
 - Nuclear power plants are risky and harmful?
 
