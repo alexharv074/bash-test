@@ -1,3 +1,7 @@
+# Response to Climate Council
+
+https://www.climatecouncil.org.au/nuclear-power-stations-are-not-appropriate-for-australia-and-probably-never-will-be/?fbclid=IwAR0l-YtXktMXYepV_WaqaFIyVCN3Ofm7ntHYxZFIUoYuAN3vtezVsYpI4hs
+
 None of these points made by the Climate Council against nuclear power stand up to serious scrutiny. I will address each point in the order as it appears in the article.
 
 - Lifecycle emissions of a nuclear power plant
@@ -11,11 +15,11 @@ This is true but it is also true of all renewable energy.
 I refer the reader to the most recent IPCC WGIII AR5 report, Chapter 7, p. 539.
 https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_chapter7.pdf
 
-As can be seen, nuclear power emits less CO2 over its lifecycle than any other form of power other than unbuffered wind power i.e. wind power without storage. Meanwhile, hydropower - particularly in warm temperate to tropical climates like Australia - can emit as much as or more CO2-equivalent in greenhouse gas (GHG) emissions as coal. Many forms of biomass are incredibly environmentally destructive and polluting e.g. wood burning and/or compete with food for agricultural land e.g. corn fuels not to mention Indonesian palm oil that gets counted towards some European renewable energy targets - and still emits far more CO2-equivalent in GHGs than nuclear. Household PV solar also emits more CO2 in its lifecycle than nuclear. See Graham Palmer's work on this for instance.
+As can be seen, nuclear power emits less CO2 over its lifecycle than any other form of power other than unbuffered wind power i.e. wind power without storage. Meanwhile, hydropower - particularly in warm temperate to tropical climates like Australia - can emit as much as or more CO2-equivalent in greenhouse gas (GHG) emissions as coal. Many forms of biomass are environmentally destructive and polluting (e.g. wood burning) and/or compete with food for agricultural land (e.g. corn fuels). Indonesian palm oil sometimes gets counted towards European renewable energy targets - and still emits far more CO2-equivalent in GHGs than nuclear! Household PV solar also emits more CO2 in its lifecycle than nuclear. See Graham Palmer's work on this for instance.
 
-Perhaps the Climate Council is using (anti-nuclear activist and paid wind industry consultant) Benjamin Sovacool's discredited numbers rather than those of the IPCC consensus?
+Perhaps the Climate Council is using (anti-nuclear activist and paid wind industry consultant) Benjamin Sovacool's discredited numbers rather than those accepted by the IPCC consensus?
 
-Furthermore, even the IPCC AR5 likely overstates the lifecycle CO2 emissions of nuclear power. The most energy-intensive part of the nuclear fuel cycle has historically been use of gaseous diffusion:
+With all of that said, even the IPCC AR5's estimates likely overstate lifecycle CO2 emissions of nuclear power. The most energy-intensive part of the nuclear fuel cycle is uranium enrichment and historically that has been the highly ineffecient method of gaseous diffusion. See here:
 
 > Gaseous diffusion was the first commercial process used in the United States to enrich uranium. These facilities utilized massive amounts of electricity and as the centrifuge technology matured the existing gaseous diffusion plants became obsolete. Worldwide they have all been replaced by second-generation technology, which requires far less electric power to produce equivalent amounts of separated uranium. These facilities are now considered obsolete.
 
