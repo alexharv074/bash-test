@@ -6,7 +6,7 @@ EOF
 
 placeLocation=myPlaceLocation
 vehicleHeading=myVehicleHeading
-message=myMessage
+message='what is 1&2?'
 
 file=FILE
 

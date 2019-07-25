@@ -124,3 +124,5 @@ https://www.world-nuclear.org/information-library/non-power-nuclear-applications
 - Bottom line
 
 In summary, the Climate Council's claims about nuclear power are all either misleading or false or dependent on an assumption that we would use old LWR technology that was designed in the 1960s and 1970s, when obviously, that is not the case.
+
+Section 140A of the Environment Protection and Biodiversity Conservation Act 1999 should be repealed and all options should be on the table in the fight against climate change and it is disappointing to find the Climate Council fighting against this principle.
